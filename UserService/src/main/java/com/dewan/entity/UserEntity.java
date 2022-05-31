@@ -1,5 +1,6 @@
 package com.dewan.entity;
 
+import com.dewan.enums.UserRegistrationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -37,6 +38,16 @@ public class UserEntity {
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide your valid email")
     private String email;
+
+    private UserRegistrationStatus userRegistrationStatus;
+
+    public UserRegistrationStatus getUserRegistrationStatus() {
+        return userRegistrationStatus;
+    }
+
+    public void setUserRegistrationStatus(UserRegistrationStatus userRegistrationStatus) {
+        this.userRegistrationStatus = userRegistrationStatus;
+    }
 
     public Long getUserid() {
         return userid;

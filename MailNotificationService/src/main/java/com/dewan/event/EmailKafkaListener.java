@@ -1,4 +1,4 @@
-package com.dewan.events;
+package com.dewan.event;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
