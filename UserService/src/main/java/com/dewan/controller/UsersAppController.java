@@ -1,18 +1,19 @@
 package com.dewan.controller;
 
-import com.dewan.request.CreateUserAccRequest;
+import com.dewan.dto.UserRegistrationRequestDtO;
+import com.dewan.entity.UserEntity;
 import com.dewan.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.Map;
+import javax.validation.Valid;
+import java.net.URI;
+
 
 @RestController
 @RequestMapping(value="/api/v1/")
@@ -22,30 +23,22 @@ public class UsersAppController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private KafkaTemplate<Object, Object> kafkaTemplate;
 
     //@PostMapping(value="/user_registration", produces =MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(value = "user_registration",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Object> createUserAcc(HttpServletRequest request, @RequestBody Map req)
+    public ResponseEntity<Object> createUserAcc(@Valid @RequestBody UserEntity userEntityParam)
     {
         log.info("Create New User API called");
-        log.info("username :"+req.get("username").toString());
-        log.info("password :"+req.get("password").toString());
-        //kafkaTemplate.send("TOPIC", req);
-        kafkaTemplate.send("TOPIC", req.get("username"), req.get("password"));
-        //addDeviceInfoRepository.save(addDeviceInfoModel);
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.add("Content-Type","application/json");
-        return ResponseEntity.ok().headers(responseHeaders).body("Data Added Successfully");
+        UserEntity userEntity = this.userService.createNewUser(userEntityParam);
+        //log.info("User registration status after: "+userEntity.getUserRegistrationStatus());
+        if (userEntity == null)
+            return ResponseEntity.noContent().build();
+
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
+                "/{userid}").buildAndExpand(userEntity.getUserid()).toUri();
+
+        return ResponseEntity.created(location).build();
     }
 
-
-
-    @PostMapping
-    public String testPost(@RequestBody Map req) {
-        kafkaTemplate.send("TOPIC", req.get("username"), req.get("password"));
-        return "testResponse";
-    }
 }

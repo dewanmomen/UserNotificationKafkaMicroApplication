@@ -120,6 +120,17 @@
             <optional>true</optional>
         </dependency>
 
+        <dependency>
+            <groupId>com.dewan</groupId>
+            <artifactId>CommonDTO</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.dewan</groupId>
+            <artifactId>CommonDTO</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
     <dependencyManagement>
         <dependencies>

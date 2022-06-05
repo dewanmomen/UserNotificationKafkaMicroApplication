@@ -1,0 +1,21 @@
+spring.cloud.stream:
+  function:
+    definition: UserEmailProcessor
+  bindings:
+    UserEmailProcessor-in-0:
+      destination: create-user-event
+    UserEmailProcessor-out-0:
+      destination: default-mail-event
+
+  spring:
+    kafka:
+      consumer:
+        #        bootstrap-servers: localhost:9092
+        group-id: GROUP_TEST
+        auto-offset-reset: latest
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      producer:
+        #        bootstrap-servers: localhost:9092
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.apache.kafka.common.serialization.StringSerializer

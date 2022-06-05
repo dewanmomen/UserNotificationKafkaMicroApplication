@@ -1,5 +1,6 @@
 package com.dewan.entity;
 
+import com.dewan.enums.DefaultMailListStatus;
 import com.dewan.enums.UserRegistrationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,7 +26,7 @@ public class UserEntity {
     private Long userid;
 
     @Column(name = "USERNAME")
-    @Length(min = 8, message = "*Your user name must have at least 8 characters long")
+    //@Length(min = 8, message = "*Your user name must have at least 8 characters long")
     @NotEmpty(message = "*Please provide a unique user name")
     private String username;
 
@@ -35,11 +36,20 @@ public class UserEntity {
     private String password;
 
     @Column(name = "EMAIL")
-    @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide your valid email")
+    //@Email(message = "*Please provide a valid Email")
+    @NotEmpty(message = "*Please provide your email")
     private String email;
 
     private UserRegistrationStatus userRegistrationStatus;
+    private DefaultMailListStatus defaultMailListStatus;
+
+    public DefaultMailListStatus getDefaultMailListStatus() {
+        return defaultMailListStatus;
+    }
+
+    public void setDefaultMailListStatus(DefaultMailListStatus defaultMailListStatus) {
+        this.defaultMailListStatus = defaultMailListStatus;
+    }
 
     public UserRegistrationStatus getUserRegistrationStatus() {
         return userRegistrationStatus;
