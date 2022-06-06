@@ -55,15 +55,26 @@ mvn clean install
 cd MailNotificationService
 mvn clean install
 
-### Deploy and intall the microservices jar into docker container
+### Deploy and intall the microservices jar into docker container or you can use spring-boot run command
 # Execute the docker build command
 DOCKER_SCAN_SUGGEST=false docker build -t user_mail_microservices_kafka_app .
 # Execute the docker run command
 docker run user_mail_microservices_kafka_app
 after command please wait for spring-boot both services will run.
 
+### OR you can use spring-boot run command( if you don't want to doploy in docker container)
+# install and run jar for user-service
+cd UserService
+mvn clean install
+mvn spring-boot:run
+
+# install and run jar for mail-notification-service
+cd MailNotificationService
+mvn clean install
+mvn spring-boot:run
+
 ### REST API Endpoint 
-## Please dowonload the postman collection[MicroservicesKafkaAPI.postman_collection.json] to run the below API
+## Please dowonload the postman collection from [MicroservicesKafkaAPI.postman_collection.json] file from the repository to run the below API
 # Create new user API
 
 URL: http://localhost:8082/api/v1/user_registration
@@ -73,10 +84,18 @@ Request Body:
   {
     "username":"dewamomen",
     "password":"zayan@1234",
-    "email":"zayandewan@gmail.com"
+    "email":"zayandewan@gmail2.com"
  }
  
  Response Body:
+ {
+    "userid": 3,
+    "username": "dewamomen",
+    "password": "zayan@1234",
+    "email": "zayandewan@gmail2.com",
+    "userRegistrationStatus": "CREATED",
+    "defaultMailListStatus": null
+ }
  
 # Get user mail list API
 
@@ -85,6 +104,11 @@ Method: GET
 Content-Type: application/json
  
 Response Body:
+{
+    "id": 1,
+    "userid": 1,
+    "email": "zayandewan@gmail1.com"
+}
  
  # Get All user mail list API
 
@@ -93,4 +117,15 @@ Method: GET
 Content-Type: application/json
  
 Response Body:
-
+[
+    {
+        "id": 1,
+        "userid": 1,
+        "email": "zayandewan@gmail1.com"
+    },
+    {
+        "id": 2,
+        "userid": 3,
+        "email": "zayandewan@gmail2.com"
+    }
+]
