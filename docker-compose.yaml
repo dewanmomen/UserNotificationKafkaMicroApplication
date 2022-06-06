@@ -1,5 +1,40 @@
 version: '3'
 services:
+#  UserService:
+#    image: user-service
+#    ports:
+#      - "8082:8082"
+#    networks:
+#      - user-mysql
+#    depends_on:
+#      - mysqldb-user-service
+#
+#  EmailService:
+#    image: mail-notification-service
+#    ports:
+#      - "8083:8083"
+#    networks:
+#      - mail-notification-mysql
+#    depends_on:
+#      - mysqldb-mail-service
+
+
+  mysqldb-user-service:
+    image: mysql:8
+    networks:
+      - user-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=dewan@12345678
+      - MYSQL_DATABASE=users_db
+
+  mysqldb-mail-service:
+    image: mysql:8
+    networks:
+      - mail-notification-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=dewan@12345678
+      - MYSQL_DATABASE=mail_notification_db
+
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     container_name: zookeeper
@@ -25,3 +60,8 @@ services:
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+
+networks:
+  user-mysql:
+  mail-notification-mysql:

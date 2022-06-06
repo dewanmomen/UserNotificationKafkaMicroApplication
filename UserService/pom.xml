@@ -101,6 +101,18 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Start Flyway migration -->
+<!--        <dependency>-->
+<!--            <groupId>org.flywaydb</groupId>-->
+<!--            <artifactId>flyway-core</artifactId>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+        </dependency>
+
+        <!-- End Flyway migration -->
+
         <!--Start Mysql Driver -->
         <dependency>
             <groupId>mysql</groupId>

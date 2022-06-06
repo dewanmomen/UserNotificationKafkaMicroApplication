@@ -3,9 +3,14 @@ package com.dewan.controller;
 import com.dewan.dto.UserRegistrationRequestDtO;
 import com.dewan.entity.UserEntity;
 import com.dewan.service.UserService;
+import com.fasterxml.jackson.core.type.TypeReference;
+import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mockito;
+import org.skyscreamer.jsonassert.JSONAssert;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -22,8 +27,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -41,6 +49,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 class UsersAppControllerTest {
+
+    private final Logger log = LoggerFactory.getLogger(UsersAppControllerTest.class);
 
     @InjectMocks
     UsersAppController usersAppController;
@@ -124,11 +134,23 @@ class UsersAppControllerTest {
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         MockHttpServletResponse response = result.getResponse();
 
-        //System.out.println("response: "+response);
-        assertEquals(HttpStatus.CREATED.value(), response.getStatus());
+        String responseContent = response.getContentAsString();
+        //assertEquals(HttpStatus.CREATED.value(), response.getStatus());
 
-        assertEquals("http://localhost/api/v1/user_registration/31",
-                response.getHeader(HttpHeaders.LOCATION));
+        log.info("responseContent: {}", responseContent);
+
+        JSONObject actualJson = new JSONObject(result.getResponse().getContentAsString());
+        actualJson.toString();
+
+        assertNotNull(responseContent);
+
+        JSONObject expectedJson = new JSONObject(exampleUsersJson);
+        expectedJson.toString();
+        assertThat(expectedJson.getString("username")).isEqualTo(actualJson.getString("username"));
+        assertThat(expectedJson.getString("password")).isEqualTo(actualJson.getString("password"));
+        assertThat(expectedJson.getString("email")).isEqualTo(actualJson.getString("email"));
+//        assertEquals("http://localhost/api/v1/user_registration/31",
+//                response.getHeader(HttpHeaders.LOCATION));
 
     }
 }

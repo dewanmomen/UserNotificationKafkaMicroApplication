@@ -27,18 +27,13 @@ public class UsersAppController {
     //@PostMapping(value="/user_registration", produces =MediaType.APPLICATION_JSON_VALUE)
     @RequestMapping(value = "user_registration",method = RequestMethod.POST,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<Object> createUserAcc(@Valid @RequestBody UserEntity userEntityParam)
+    public UserEntity createUserAcc(@Valid @RequestBody UserEntity userEntityParam)
     {
         log.info("Create New User API called");
         UserEntity userEntity = this.userService.createNewUser(userEntityParam);
         //log.info("User registration status after: "+userEntity.getUserRegistrationStatus());
-        if (userEntity == null)
-            return ResponseEntity.noContent().build();
 
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
-                "/{userid}").buildAndExpand(userEntity.getUserid()).toUri();
-
-        return ResponseEntity.created(location).build();
+        return userEntity;
     }
 
 }
