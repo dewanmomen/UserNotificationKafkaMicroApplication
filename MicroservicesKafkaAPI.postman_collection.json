@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "80369060-4ad5-4018-b032-5f21036dd01f",
+		"name": "MicroservicesKafkaAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "482562"
+	},
+	"item": [
+		{
+			"name": "user_registration",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\":\"zayandewan\",\n    \"password\":\"zayan@1234\",\n    \"email\":\"zayandewan@gmail.com\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8082/api/v1/user_registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"api",
+						"v1",
+						"user_registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users_mail_list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8083/api/v1/users_mail_list/14",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"users_mail_list",
+						"14"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllMailList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8083/api/v1/getAllMailList",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"v1",
+						"getAllMailList"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

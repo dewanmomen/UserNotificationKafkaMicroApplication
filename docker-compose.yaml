@@ -20,7 +20,7 @@ services:
 
 
   mysqldb-user-service:
-    image: mysql:8
+    image: mysql:8.0.18
     networks:
       - user-mysql
     environment:
@@ -28,7 +28,7 @@ services:
       - MYSQL_DATABASE=users_db
 
   mysqldb-mail-service:
-    image: mysql:8
+    image: mysql:8.0.18
     networks:
       - mail-notification-mysql
     environment:
