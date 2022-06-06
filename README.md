@@ -28,14 +28,14 @@ I have developed 3 REST API, one for user registration, another one is user's ma
     
 ### I have used the following Java Stacks - 
 ## Tech Stacks:
-  • Java 8
-  • Spring Boot
-  • MySQL 8
-  • Kafka
-  • Docker
-  • Choreography Saga Pattern
-  • Flyway Schema migration
-  • JUnit 5
+  • Java 8  
+  • Spring Boot  
+  • MySQL 8  
+  • Kafka   
+  • Docker  
+  • Choreography Saga Pattern  
+  • Flyway Schema migration   
+  • JUnit 5   
   
 ## Getting Started
 To Deploy this application, run the following commands:
@@ -77,17 +77,17 @@ mvn spring-boot:run
 ## Please dowonload the postman collection from [MicroservicesKafkaAPI.postman_collection.json] file from the repository to run the below API
 # Create new user API
 
-URL: http://localhost:8082/api/v1/user_registration
-Method: POST
-Content-Type: application/json
-Request Body: 
+URL: http://localhost:8082/api/v1/user_registration  
+Method: POST   
+Content-Type: application/json   
+Request Body:  
   {
     "username":"dewamomen",
     "password":"zayan@1234",
     "email":"zayandewan@gmail2.com"
  }
  
- Response Body:
+ Response Body:  
  {
     "userid": 3,
     "username": "dewamomen",
@@ -99,11 +99,11 @@ Request Body:
  
 # Get user mail list API
 
-URL: http://localhost:8083/api/v1/users_mail_list/1
-Method: GET
-Content-Type: application/json
+URL: http://localhost:8083/api/v1/users_mail_list/1  
+Method: GET  
+Content-Type: application/json   
  
-Response Body:
+Response Body:  
 {
     "id": 1,
     "userid": 1,
@@ -112,11 +112,11 @@ Response Body:
  
  # Get All user mail list API
 
-URL: http://localhost:8083/api/v1/getAllMailList
-Method: GET
-Content-Type: application/json
+URL: http://localhost:8083/api/v1/getAllMailList  
+Method: GET  
+Content-Type: application/json  
  
-Response Body:
+Response Body:  
 [
     {
         "id": 1,
