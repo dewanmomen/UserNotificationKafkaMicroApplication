@@ -5,7 +5,7 @@
 
 This application has 2 service, one for UserService and another for MailNotificationService
 
-![Screenshot](./images/functionalnew.png)
+![Screenshot](./functional.jpeg)
 ### Functionality:
 I have developed 3 REST API, one for user registration, another one is user's mail list, and third one is Allmail list API for this solution.
 
