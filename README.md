@@ -23,8 +23,8 @@ I have developed 3 REST API, one for user registration, another one is user's ma
 		• An array of strings (the mail lists that contain the user) returns.
 		• If the user is connected to no list, return empty body with 404 HTTP status 
     
-  3. Get All Mail list:
-    • All data will retrun in Arraylist from the default mail list table.
+  	3. Get All Mail list:
+    		• All data will retrun in Arraylist from the default mail list table.
     
 ### I have used the following Java Stacks - 
 ## Tech Stacks:
