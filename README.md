@@ -55,7 +55,7 @@ mvn clean install
 cd MailNotificationService  
 mvn clean install  
 
-### Deploy and intall the microservices jar into docker container or you can use spring-boot run command
+### Deploy and install the microservices jar into docker container or you can use spring-boot run command
 # Execute the docker build command
 DOCKER_SCAN_SUGGEST=false docker build -t user_mail_microservices_kafka_app .
 # Execute the docker run command
