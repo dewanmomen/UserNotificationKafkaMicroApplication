@@ -48,30 +48,30 @@ docker-compose rm -fsv
 
 ## installs the resulting artifact (JAR) by the folloing command
 # install jar for user-service
-cd UserService
-mvn clean install
+cd UserService  
+mvn clean install  
 
 # install jar for mail-notification-service
-cd MailNotificationService
-mvn clean install
+cd MailNotificationService  
+mvn clean install  
 
-### Deploy and intall the microservices jar into docker container or you can use spring-boot run command
+### Deploy and install the microservices jar into docker container or you can use spring-boot run command
 # Execute the docker build command
 DOCKER_SCAN_SUGGEST=false docker build -t user_mail_microservices_kafka_app .
 # Execute the docker run command
-docker run user_mail_microservices_kafka_app
+docker run user_mail_microservices_kafka_app  
 after command please wait for spring-boot both services will run.
 
 ### OR you can use spring-boot run command( if you don't want to doploy in docker container)
 # install and run jar for user-service
-cd UserService
-mvn clean install
-mvn spring-boot:run
+cd UserService  
+mvn clean install  
+mvn spring-boot:run  
 
 # install and run jar for mail-notification-service
-cd MailNotificationService
-mvn clean install
-mvn spring-boot:run
+cd MailNotificationService  
+mvn clean install  
+mvn spring-boot:run  
 
 ### REST API Endpoint 
 ## Please dowonload the postman collection from [MicroservicesKafkaAPI.postman_collection.json] file from the repository to run the below API
