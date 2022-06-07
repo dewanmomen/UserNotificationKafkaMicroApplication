@@ -48,12 +48,12 @@ docker-compose rm -fsv
 
 ## installs the resulting artifact (JAR) by the folloing command
 # install jar for user-service
-cd UserService
-mvn clean install
+cd UserService  
+mvn clean install  
 
 # install jar for mail-notification-service
-cd MailNotificationService
-mvn clean install
+cd MailNotificationService  
+mvn clean install  
 
 ### Deploy and intall the microservices jar into docker container or you can use spring-boot run command
 # Execute the docker build command
